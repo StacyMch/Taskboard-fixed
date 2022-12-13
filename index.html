@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Taskboard</title>
+</head>
+<body>
+    <div id="boards">
+   
+    </div>
+
+    <div id="side-menu">
+        <div class="hide-boards-menu" onclick="toggleBoardsList()">
+            &lsaquo;
+        </div>
+        <hr class="dividing-line">
+        <div class="my-boards">
+            <h4>Мои доски</h4>
+            <div class="add-board" onclick="boardAdd()">
+                +
+            </div>
+        </div>
+        <div id="boards-list" class="boards-list">
+
+        </div>
+    </div>
+    
+    <div id="sidebar">
+        <div class="menu-header">
+            <h3>Меню</h3>
+            <div class="menu-close" onclick="toggleMenu()">
+                &#215;
+            </div>
+        </div>
+        <hr class="dividing-line">
+        <div class="menu-main">
+            <h4 class="background-change">Сменить фон</h4>
+        </div>
+        <div id="tile" class="tile-flex">
+
+        </div>
+    </div>
+    
+    <template id="tmpl-board">
+        <div class="board bg-fix" style="background-image: url('${board_background}');">
+            <div class="board-header flex-box space-between">
+                <div class="boards-menu-icon" onclick="toggleBoardsList()">
+                    &rsaquo;
+                </div>
+                    <input class="board-input" type="text" value="${board_header}" oninput="boardRename(${board_number})" placeholder="Новая доска">
+                <div class="menu-dots" onclick="toggleMenu()">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <div class="board-content ">
+                <div class="flex-box">
+                    ${board_content}
+                </div>
+                <div>
+                    <button class="btn" onclick="columnAdd()">
+                        + Добавить колонку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    
+    <template id="tmpl-column">
+        <div class="column">
+            <div class="column-header flex-box">
+                <div>
+                    <input class="column-input" type="text" value="${column_header}" oninput="columnRename(${column_number})" placeholder="Новый список">
+                </div>
+                <div class="column-delete to-right" onclick="columnDelete(${column_number})">
+                    &#215;
+                </div>
+            </div>
+            <div class="column-content">
+                ${column_content}
+                <div class="card-form">
+                    <div class="card-form-hidden">
+                        <div class="card-insert-text">
+                            <div>
+                                <input class="card-title" type="text" placeholder="Название задачи">
+                            </div>
+                            <div>
+                                <textarea class="card-description" placeholder="Описание"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <input class="card-time" type="datetime-local">
+                        </div>
+                        <div class="wrap">
+                            <div>
+                                <button  class="add-card-text" onclick="cardAdd(${board_number},${column_number})">Создать</button>
+                            </div>
+                            <div class="cancel" onclick="cancel(${column_number})">
+                                &#215;
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            
+                <div>
+                    <button  class="add-card-form" onclick="cardFormAdd(${column_number})">+ Добавить задачу</button>
+                </div>
+            
+        </div>
+    </template>
+    
+    <template id="tmpl-card">
+        <div class="card">
+            <div class="card-header">
+                ${card_header}
+            </div>
+            <div class="card-content ghost">
+                ${card_content}
+            </div>
+            <div title="${card_notification}">
+                ${card_notification}
+            </div>
+            <div class="card-delete" onclick="cardDelete(${board_number},${column_number},${card_number})">
+                &#215;
+            </div>
+        </div>
+    </template>
+
+    <template id="tmpl-background">
+        <div onclick="changeBackground()" class="tile-background" style="background-image: url('${background_image}');" data-background="${background_image}">
+
+        </div>
+    </template>
+
+    <template id="tmpl-board-line">
+        <div class="board-name-wrap">
+            <div onclick="changeBoard()" class="side-menu-item" data-num="${board_num}">
+                ${board_title}
+            </div>
+            <div class="board-delete" onclick="boardDelete(${board_num})">
+                &#215;
+            </div>
+        </div>
+    </template>
+    <script src="js/main.js"></script>
+</body>
+</html>

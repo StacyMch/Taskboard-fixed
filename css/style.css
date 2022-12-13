@@ -1,0 +1,461 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+}
+
+.dividing-line {
+    background-color: var(--ds-border,#091e4221);
+    border: 0;
+    height: 1px;
+    margin: 16px 0;
+    padding: 0;
+    width: 100%;
+}
+
+.board {
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #172b4d;
+    overflow-x: scroll;
+}
+
+.board::-webkit-scrollbar {
+    height: 15px;
+    background-color: transparent;
+}
+
+.board::-webkit-scrollbar-thumb {
+    background-color: #c1c1c196;
+    border-radius: 10px;
+}
+
+.board::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgb(248 248 248 / 13%) inset;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 10px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.board-header {
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.board-header input {
+    color: white;
+    font-size: 40px;
+    background-color: transparent;
+    border: none;
+    outline-style: none;
+    border-radius: 5px;
+}
+
+.board-input::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+.column-header-input::-webkit-input-placeholder {
+    color: #172b4d;
+}
+
+input:focus::-webkit-input-placeholder { 
+    color:transparent; 
+}
+
+textarea:focus::-webkit-input-placeholder { 
+    color:transparent; 
+}
+
+/* .board-header input:focus {
+    если захочется добавить белую подложку во время печатания названия доски в инпуте
+} */
+
+.board-content {
+    display: flex;
+}
+
+.column {
+    color: #172b4d;
+    width: 250px;
+    background-color: gainsboro;
+    margin: 0 10px 10px 10px;
+    padding: 5px;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.column-content::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+.column-content::-webkit-scrollbar-thumb {
+    background-color: #c1c1c196;
+    border-radius: 10px;
+}
+
+.column-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgb(248 248 248 / 13%) inset;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.column-header {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.column-header input {
+    color: #172b4d;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    max-width: 210px;
+    outline-color: gray;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.column-header input:focus {
+    background-color: white;
+}
+
+.column-content {
+    padding: 5px;
+    max-height: 73vh;
+    overflow-y: auto;
+}
+
+.column-delete {
+    display: none;
+    cursor: pointer;
+}
+
+.column:hover .column-delete {
+    display: block;
+}
+
+.column:hover .column-delete {
+    display: block;
+}
+
+.card {
+    color: #172b4d;
+    background-color: ghostwhite;
+    border-radius: 5px;
+    margin: 5px 0;
+    position: relative;
+    padding: 5px;
+    box-shadow: 0px 1px 1px grey;
+}
+
+.card-title {
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    width: -webkit-fill-available;
+    margin-bottom: 4px;
+    outline-color: transparent;
+}
+
+.card-description {
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    width: -webkit-fill-available;
+    outline-color: transparent;
+}
+
+.card-content {
+    overflow-wrap: anywhere;
+}
+
+.card-delete {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.card:hover .card-delete {
+    display: block;
+}
+
+.add-card-form {
+    color: #172b4d;
+    background-color: transparent;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    padding: 8px 15px;
+    margin: 5px auto 5px 5px;
+    cursor: pointer;
+}
+
+.add-card-form:hover {
+    background-color: rgba(169, 169, 169, 0.499);
+}
+
+.flex-box {
+    display: flex;
+}
+
+.to-right {
+    margin: 0 8px 0 auto;
+}
+
+.ghost {
+    opacity: 0.5;
+}
+
+.bg-fix {
+    background-size: cover;
+    background-position: center;
+}
+
+.btn {
+    width: 178px;
+    height: 40px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.318);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 auto 5px 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.499);
+}
+
+#sidebar {
+    position: fixed;
+    padding: 10px;
+    width: 300px;
+    top: 0;
+    bottom: 0;
+    right: -350px;
+    background-color: gainsboro;
+    transition: all 0.3s;
+    color: #172b4d;
+    overflow-y: scroll;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.sidebar-active {
+    right: 0 !important;
+}
+
+.boards-menu-icon {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.318);
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    transition: 0.4s;
+}
+
+.menu-dots {
+    background-color: rgba(255, 255, 255, 0.318);
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.menu-dots:hover, .boards-menu-icon:hover {
+    background-color: rgba(255, 255, 255, 0.499);
+}
+
+.dot {
+    background-color: white;
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+}
+
+.menu-header, .my-boards {
+    display: flex;
+    align-items: center;
+}
+
+.menu-header > h3 {
+    color: #172b4d;
+    margin: auto auto auto 120px;
+}
+
+.hide-boards-menu {
+    text-align: right;
+    margin: 0 5px 0 auto;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hide-boards-menu:hover {
+    color: blue;
+}
+
+.menu-close {
+    font-size: 25px;
+    cursor: pointer;
+    margin: auto 5px auto auto;
+}
+
+.background-change {
+    text-align: center;
+}
+
+.tile-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile-background {
+    height: 81px;
+    width: 122px;
+    border-radius: 10px;
+    background-size: cover;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.add-card-text {
+    color: white;
+    background-color: #172b4d;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    padding: 8px 15px;
+    margin: 10px auto 0 0;
+    cursor: pointer;
+}
+
+.add-card-text:hover {
+    background-color: #172b4dc7;
+}
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cancel {
+    font-size: 45px;
+    cursor: pointer;
+}
+
+.cancel:hover {
+    color: #172b4dc7;
+}
+
+.card-form {
+    
+}
+
+.card-form-hidden {
+    display: none;
+}
+
+.card-insert-text {
+    background-color: gainsboro;
+}
+
+#side-menu {
+    position: fixed;
+    padding: 10px;
+    width: 300px;
+    top: 0;
+    bottom: 0;
+    left: -350px;
+    background-color: gainsboro;
+    transition: all 0.3s;
+    color: #172b4d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.side-menu-active {
+    left: 0 !important;
+}
+
+.board-delete {
+    color: transparent;
+    cursor: pointer;
+    margin: 0 5px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.side-menu-item {
+    font-weight: bold;
+    margin: 5px auto 5px 5px;
+    cursor: pointer;
+}
+
+.board-delete:hover {
+    color: #172b4d;
+}
+
+.my-boards > h4 {
+    margin-left: 5px;
+}
+
+.add-board {
+        font-size: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: auto 5px auto auto;
+}
+
+.board-name-wrap {
+    display: flex;
+}
+
+.board-name-wrap:hover {
+    background-color: rgba(255, 255, 255, 0.499);
+}
