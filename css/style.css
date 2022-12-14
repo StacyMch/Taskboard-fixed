@@ -498,3 +498,20 @@ textarea:focus::-webkit-input-placeholder {
         padding: 7px 9px;
     }
 }
+
+
+@media (max-width: 365px) {
+    
+    .board-header input {
+        width: 180px;
+        font-size: 25px;
+    }
+
+    .board-content {
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        margin: 0 10px 0 10px;
+    }
+}
