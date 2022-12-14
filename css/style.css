@@ -481,7 +481,7 @@ textarea:focus::-webkit-input-placeholder {
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 390px) {
     
     .board-header input {
         width: 250px;
