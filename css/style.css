@@ -499,7 +499,6 @@ textarea:focus::-webkit-input-placeholder {
     }
 }
 
-
 @media (max-width: 365px) {
     
     .board-header input {
@@ -514,4 +513,13 @@ textarea:focus::-webkit-input-placeholder {
     .btn {
         margin: 0 10px 0 10px;
     }
+
+    .side-menu-active {
+        width: -webkit-fill-available !important;
+    }
+
+    .sidebar-active {
+        width: -webkit-fill-available !important;
+    }
+    
 }
