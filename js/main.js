@@ -2,7 +2,7 @@
     let data = localStorage.getItem('boards');
     console.log(data)
 
-    //если нет сохраненного то выдаем стартовый объект
+    //если нет сохраненного, то выдаем стартовый объект
     if (data == null) {
         //перезаписываем data
         data = {
@@ -89,10 +89,10 @@
                 //бежим по всем карточкам колонки
                 for (let k = 0; k < data['boards'][i]['columns'][j]['cards'].length; k++) {
 
-                   //делаем рассылку задачи, КСЛИ ВРЕМЯ ЗАДАЧИ СОВПАДАЕТ С ТЕКУШИМ ВРЕМЕНЕМ ИЗ ПЕРЕМЕННОЙ
+                   //делаем рассылку задачи, ЕСЛИ ВРЕМЯ ЗАДАЧИ СОВПАДАЕТ С ТЕКУШИМ ВРЕМЕНЕМ ИЗ ПЕРЕМЕННОЙ
                     if (data['boards'][i]['columns'][j]['cards'][k]['time'] == now) {
 
-                        //отправка события в телеграм, осталось прописать саму функцию sendMessage
+                        //отправка события в телеграм через функцию sendMessage
                         sendMessage(data['boards'][i]['columns'][j]['cards'][k]['title'] + ': ' + data['boards'][i]['columns'][j]['cards'][k]['description'], chat_id);
                     
                         //ставим отметку, что уже отправлялось, убирая время
@@ -119,14 +119,13 @@
             let xhr = new XMLHttpRequest();
             xhr.open('GET', url, true); //тут мы отправляем данные асинхронно и не ждем ответа (не нужно узнавать, отправилось сообщение или нет
             xhr.send();
-
-        //если время совпало, отправляем эту задачу в телеграм и помечаем, что она отослана (убираем время)
     }
 
     console.log(data);
     
     //номер текущей доски достаем из хранилища
     let currentBoardId = localStorage.getItem('current_board');
+
     //если еще не сохраняли номер
     if(currentBoardId == null) {
         currentBoardId = 0;
@@ -134,7 +133,7 @@
 
     renderBoards();
 
-    //функция, чтобы открыть и спрятать меню
+    //функция, чтобы открыть и спрятать меню справа
     function toggleMenu() {
 
         //запускает отрисовку тайлов с фонами
@@ -144,7 +143,7 @@
         document.getElementById('sidebar').classList.toggle('sidebar-active');
     }
 
-        //функция, чтобы открыть и спрятать меню
+        //функция, чтобы открыть и спрятать меню слева
         function toggleBoardsList() {
 
             //toogle добавляет элементу с данным id класс sidebar-active, если его нет, и убирает, если он есть
