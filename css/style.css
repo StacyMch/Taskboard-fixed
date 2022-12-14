@@ -66,6 +66,7 @@ h3 {
 .board-header {
     padding: 10px;
     justify-content: space-between;
+    align-items: center;
 }
 
 .board-header input {
@@ -458,4 +459,42 @@ textarea:focus::-webkit-input-placeholder {
 
 .board-name-wrap:hover {
     background-color: rgba(255, 255, 255, 0.499);
+}
+
+@media (max-width: 620px) {
+    
+    .board-header input {
+        width: 300px;
+    }
+
+    .board-input::-webkit-input-placeholder {
+        text-align: center;
+    }
+}
+
+@media (max-width: 474px) {
+    
+    .btn {
+        width: -webkit-fill-available;
+        height: auto;
+        margin: 0 10px 5px 5px;
+    }
+}
+
+@media (max-width: 375px) {
+    
+    .board-header input {
+        width: 250px;
+        font-size: 30px;
+    }
+
+    .column-header input {
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 13px;
+        margin: 0 10px 0 0;
+        padding: 7px 9px;
+    }
 }
