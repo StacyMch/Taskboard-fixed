@@ -134,7 +134,7 @@
 
     renderBoards();
 
-    //функция, чтобы открыть и спрятать меню
+    //функция, чтобы открыть и спрятать правое меню
     function toggleMenu() {
 
         //запускает отрисовку тайлов с фонами
@@ -144,7 +144,7 @@
         document.getElementById('sidebar').classList.toggle('sidebar-active');
     }
 
-        //функция, чтобы открыть и спрятать меню
+        //функция, чтобы открыть и спрятать левое меню
         function toggleBoardsList() {
 
             //toogle добавляет элементу с данным id класс sidebar-active, если его нет, и убирает, если он есть
@@ -192,9 +192,6 @@
         //перерисовываем доски с учетом номера текущей доски
         renderBoards();
 
-        //закрываем меню
-        toggleBoardsList();
-
         save();
 
     }
@@ -237,11 +234,12 @@
             for (let i = 0; i < data['boards'].length; i++) { 
     
                 container.innerHTML += tmpl_board.replace('${board_num}', i)
-                                                 .replace('${board_background}', data['boards'][i]['backgrounds']) 
+                                                 .replace('${board_background}', data['boards'][i]['backgrounds'])
+                                                 .replace('${background_image}', data['boards'][i]['backgrounds'])
                                                  .replace('${board_title}', data['boards'][i]['title'])
                                                  .replace('${board_num}', i);
             
-                if(document.getElementsByClassName('background-icon')[i].style == "background-image: url('undefined');") {
+                if(document.getElementsByClassName('background-icon')[i].getAttribute('data-background') == 'undefined') {
                     document.getElementsByClassName('background-icon')[i].style.backgroundImage = 'none';
                     document.getElementsByClassName('background-icon')[i].style.backgroundColor = '#172b4d';
                     console.log('It works');
@@ -366,9 +364,6 @@
 
         //отрисовывать доску
         renderBoards();
-
-        //закрываем меню
-        toggleBoardsList();
 
         //сохранить модель
         save();

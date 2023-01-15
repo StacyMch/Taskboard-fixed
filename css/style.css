@@ -85,11 +85,11 @@ textarea:focus::-webkit-input-placeholder {
 .board-content {
     display: flex;
     overflow-x: scroll;
-    height: calc(100vh - 75px);
+    height: calc(100vh - 60px);
 }
 
 .board-content::-webkit-scrollbar {
-    height: 15px;
+    height: 10px;
     background-color: transparent;
 }
 
@@ -493,6 +493,11 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 @media (max-width: 474px) {
+  
+    .board-header input {
+        width: 250px;
+        font-size: 30px;
+    }
     
     .btn {
         width: -webkit-fill-available;
@@ -502,11 +507,6 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 @media (max-width: 390px) {
-    
-    .board-header input {
-        width: 250px;
-        font-size: 30px;
-    }
 
     .column-header input {
         font-size: 20px;
@@ -524,14 +524,6 @@ textarea:focus::-webkit-input-placeholder {
     .board-header input {
         width: 180px;
         font-size: 25px;
-    }
-
-    .board-content {
-        flex-wrap: wrap;
-    }
-
-    .btn {
-        margin: 0 10px 0 10px;
     }
 
     .side-menu-active {
