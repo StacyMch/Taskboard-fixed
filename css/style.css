@@ -27,24 +27,8 @@ h3 {
     color: white;
     overflow: hidden;
     height: 100vh;
+    /* background-image: url('https://stacymch.github.io/wallpapers/img/river.jpg'); */
     background-color: #172b4d;
-    overflow-x: scroll;
-}
-
-.board::-webkit-scrollbar {
-    height: 15px;
-    background-color: transparent;
-}
-
-.board::-webkit-scrollbar-thumb {
-    background-color: #c1c1c196;
-    border-radius: 10px;
-}
-
-.board::-webkit-scrollbar-track {
-    -webkit-box-shadow: 5px 5px 5px -5px rgb(248 248 248 / 13%) inset;
-    background-color: transparent;
-    border-radius: 10px;
 }
 
 #sidebar::-webkit-scrollbar {
@@ -83,7 +67,7 @@ h3 {
 }
 
 .column-header-input::-webkit-input-placeholder {
-    color: #172b4d;
+    color: #172b4d !important;
 }
 
 input:focus::-webkit-input-placeholder { 
@@ -100,6 +84,24 @@ textarea:focus::-webkit-input-placeholder {
 
 .board-content {
     display: flex;
+    overflow-x: scroll;
+    height: calc(100vh - 75px);
+}
+
+.board-content::-webkit-scrollbar {
+    height: 15px;
+    background-color: transparent;
+}
+
+.board-content::-webkit-scrollbar-thumb {
+    background-color: #c1c1c196;
+    border-radius: 10px;
+}
+
+.board-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgb(248 248 248 / 13%) inset;
+    background-color: transparent;
+    border-radius: 10px;
 }
 
 .column {
@@ -432,6 +434,19 @@ textarea:focus::-webkit-input-placeholder {
     transition: all 0.3s;
 }
 
+.side-menu-wrap {
+    display: flex;
+    cursor: pointer;
+}
+
+.background-icon {
+    border-radius: 6px;
+    background-size: cover;
+    width: 35px;
+    height: 25px;
+    margin-right: 10px;
+}
+
 .side-menu-item {
     font-weight: bold;
     margin: 5px auto 5px 5px;
@@ -453,8 +468,13 @@ textarea:focus::-webkit-input-placeholder {
         margin: auto 5px auto auto;
 }
 
+.add-board:hover {
+    color: blue;
+}
+
 .board-name-wrap {
     display: flex;
+    cursor: pointer;
 }
 
 .board-name-wrap:hover {

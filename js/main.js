@@ -1,8 +1,8 @@
     //создаем модель таскборда
     let data = localStorage.getItem('boards');
-    console.log(data)
+    //console.log(data)
 
-    //если нет сохраненного, то выдаем стартовый объект
+    //если нет сохраненного то выдаем стартовый объект
     if (data == null) {
         //перезаписываем data
         data = {
@@ -23,6 +23,16 @@
     } else {
         data = JSON.parse(data);
     }
+
+    //номер текущей доски достаем из хранилища
+    let currentBoardId = localStorage.getItem('current_board');
+    //если еще не сохраняли номер
+    if(currentBoardId == null) {
+        currentBoardId = 0;
+    }
+
+    //адрес юзера в телеграм
+    let chat_id = 224039891;
 
     //список фонов для JSON-модели
     let backgrounds = [
@@ -55,28 +65,23 @@
                 'https://stacymch.github.io/wallpapers/img/anime9.jpg'
             ];
 
-
-    
-    //адрес юзера в телеграм
-    let chat_id = 224039891;
-
-    //функция рассылки
-    setInterval(function() {
-
-    //запускаем рассыльщик уведомлений через каждые 5 секунд
-    sender();
-
-    },5000);
-
-    
     //записываем в переменную текущее время
     //https://stackoverflow.com/questions/38816337/convert-javascript-date-format-to-yyyy-mm-ddthhmmss
     let now = new Date(); //Fri Dec 09 2022 01:50:22 GMT+0300 (Москва, стандартное время)
+
+    //функция рассылки
+    setInterval(function() {
 
     //задаем формат, чтобы совпадал с форматом из datetime-local, обманывая метод toISOString() путем передачи ему текущего времени в нужном часовом поясе, обращенного в строку с подстановкой "UTC" вместо "GMT+0300"
     now = new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split(':'); //сплитом разрезаем по ":", чтобы отрезать секунды
     now = now[0] + ':' + now[1]; // заново склеиваем первые два разрезанных элемента путем конкатенации (без третьего - секунд)
     console.log(now); // теперь все в нужном формате 2022-12-09T02:39
+
+    //запускаем рассыльщик уведомлений через каждые 45 секунд
+    sender();
+
+    },45000);
+
 
     function sender() {
 
@@ -89,14 +94,16 @@
                 //бежим по всем карточкам колонки
                 for (let k = 0; k < data['boards'][i]['columns'][j]['cards'].length; k++) {
 
-                   //делаем рассылку задачи, ЕСЛИ ВРЕМЯ ЗАДАЧИ СОВПАДАЕТ С ТЕКУШИМ ВРЕМЕНЕМ ИЗ ПЕРЕМЕННОЙ
+                    console.log(data['boards'][i]['columns'][j]['cards'][k]['time']);
+                   //делаем рассылку задачи, КСЛИ ВРЕМЯ ЗАДАЧИ СОВПАДАЕТ С ТЕКУШИМ ВРЕМЕНЕМ ИЗ ПЕРЕМЕННОЙ
                     if (data['boards'][i]['columns'][j]['cards'][k]['time'] == now) {
 
-                        //отправка события в телеграм через функцию sendMessage
+                        //отправка события в телеграм, осталось прописать саму функцию sendMessage
                         sendMessage(data['boards'][i]['columns'][j]['cards'][k]['title'] + ': ' + data['boards'][i]['columns'][j]['cards'][k]['description'], chat_id);
                     
                         //ставим отметку, что уже отправлялось, убирая время
                         data['boards'][i]['columns'][j]['cards'][k]['time'] = '';
+
                     }
 
                 }
@@ -119,21 +126,15 @@
             let xhr = new XMLHttpRequest();
             xhr.open('GET', url, true); //тут мы отправляем данные асинхронно и не ждем ответа (не нужно узнавать, отправилось сообщение или нет
             xhr.send();
+
     }
 
-    console.log(data);
+    //console.log(data);
     
-    //номер текущей доски достаем из хранилища
-    let currentBoardId = localStorage.getItem('current_board');
-
-    //если еще не сохраняли номер
-    if(currentBoardId == null) {
-        currentBoardId = 0;
-    }
 
     renderBoards();
 
-    //функция, чтобы открыть и спрятать меню справа
+    //функция, чтобы открыть и спрятать меню
     function toggleMenu() {
 
         //запускает отрисовку тайлов с фонами
@@ -143,11 +144,13 @@
         document.getElementById('sidebar').classList.toggle('sidebar-active');
     }
 
-        //функция, чтобы открыть и спрятать меню слева
+        //функция, чтобы открыть и спрятать меню
         function toggleBoardsList() {
 
             //toogle добавляет элементу с данным id класс sidebar-active, если его нет, и убирает, если он есть
             document.getElementById('side-menu').classList.toggle('side-menu-active');
+
+            renderBoardsList();
         }
 
     //функция сохранения
@@ -234,11 +237,27 @@
             for (let i = 0; i < data['boards'].length; i++) { 
     
                 container.innerHTML += tmpl_board.replace('${board_num}', i)
+                                                 .replace('${board_background}', data['boards'][i]['backgrounds']) 
                                                  .replace('${board_title}', data['boards'][i]['title'])
                                                  .replace('${board_num}', i);
+            
+                if(document.getElementsByClassName('background-icon')[i].style == "background-image: url('undefined');") {
+                    document.getElementsByClassName('background-icon')[i].style.backgroundImage = 'none';
+                    document.getElementsByClassName('background-icon')[i].style.backgroundColor = '#172b4d';
+                    console.log('It works');
+                }
+
+                //пишем дефолтное название в списке досок, если юзер не изменил его
+                let defaultBoardTitle = document.getElementsByClassName('board-title')[i];
+                
+                if(defaultBoardTitle.innerHTML == 0) {
+
+                    defaultBoardTitle.textContent = 'Новая доска';
+                    console.log('It works');
+
+                }
             }
-    
-    
+            
         }
 
     //функция отрисовки досок
