@@ -198,6 +198,20 @@ textarea:focus::-webkit-input-placeholder {
     outline-color: transparent;
 }
 
+.card-description::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+}
+
+.card-description::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+}
+
+.card-description::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: transparent;
+}
+
 .card-content {
     overflow-wrap: anywhere;
 }
@@ -474,7 +488,7 @@ textarea:focus::-webkit-input-placeholder {
 
 .board-name-wrap {
     display: flex;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .board-name-wrap:hover {

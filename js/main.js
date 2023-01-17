@@ -1,3 +1,4 @@
+//localStorage.clear();
     //создаем модель таскборда
     let data = localStorage.getItem('boards');
     //console.log(data)
@@ -192,6 +193,8 @@
         //перерисовываем доски с учетом номера текущей доски
         renderBoards();
 
+        //toggleBoardsList();
+
         save();
 
     }
@@ -275,7 +278,7 @@
         //в цикле подставляем данные в шаблоны (СОБИРАЕМ ДОСКИ)
         for (let i = 0; i < data['boards'].length; i++ ) {
 
-            //если номер доски в списке не совпадает с номером текущей доски, то не рисуем ее
+            //если номер доски в списке не совпадает с номером текущей доски, то не рисуем ее, т.е. рисуем только актуальную выбранную доску
             if (i != currentBoardId) {
                 continue; //переход далее
             }
@@ -327,7 +330,7 @@
                                              .replace('${board_number}',i) 
                                              .replace('${board_number}',i) 
                                              .replace('${board_content}',boardColumns);
-        }
+        }    
 
         renderBoardsList();
     }
@@ -364,6 +367,8 @@
 
         //отрисовывать доску
         renderBoards();
+
+        //toggleBoardsList();
 
         //сохранить модель
         save();
@@ -456,6 +461,14 @@
 
         //сохраняем
         save();
+
+        
+        //автопрокрутка скроллбара к последнему сообщению
+        scrolledContainer = document.querySelectorAll('.column-content')[column_number]; 
+        console.log(scrolledContainer);
+        let xH = scrolledContainer.scrollHeight; 
+
+        scrolledContainer.scrollTo(0, xH);
        
     }
 
@@ -498,6 +511,7 @@
             renderBoards(); 
 
             save();
+
         }
 
     }
