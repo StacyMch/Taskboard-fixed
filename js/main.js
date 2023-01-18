@@ -25,6 +25,8 @@
         data = JSON.parse(data);
     }
 
+    console.log(data);
+
     //номер текущей доски достаем из хранилища
     let currentBoardId = localStorage.getItem('current_board');
     //если еще не сохраняли номер
@@ -193,7 +195,7 @@
         //перерисовываем доски с учетом номера текущей доски
         renderBoards();
 
-        //toggleBoardsList();
+        toggleBoardsList();
 
         save();
 
