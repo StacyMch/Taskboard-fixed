@@ -166,10 +166,6 @@ textarea:focus::-webkit-input-placeholder {
     display: block;
 }
 
-.column:hover .column-delete {
-    display: block;
-}
-
 .card {
     color: #172b4d;
     background-color: ghostwhite;
@@ -507,7 +503,19 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 @media (max-width: 474px) {
+
+    .column-delete {
+        display: block;
+    }
   
+    .card-delete {
+        display: block;
+    }
+
+    .board-delete {
+        color: #172b4d;;
+    }
+
     .board-header input {
         width: 250px;
         font-size: 30px;
